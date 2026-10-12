@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusGate | Visitor Management</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>CampusGate</h2>
+                <p>Visitor Management</p>
+            </div>
+
+            <nav>
+                <a href="#" class="nav-link active"
+                   onclick="showSection('dashboard'); return false;">
+                    Dashboard
+                </a>
+
+                <a href="#" class="nav-link"
+                   onclick="showSection('register'); return false;">
+                    Register Visitor
+                </a>
+
+                <a href="#" class="nav-link"
+                   onclick="showSection('records'); return false;">
+                    Visitor Records
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <p>College Campus</p>
+                <small>Visitor Management System</small>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="content-section">
+                <header class="page-header">
+                    <div>
+                        <h1>Dashboard</h1>
+                        <p>Welcome to the campus visitor management system.</p>
+                    </div>
+
+                    <button onclick="showSection('register')">
+                        + Register Visitor
+                    </button>
+                </header>
+
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <h3>Visits Today</h3>
+                        <p id="visitsToday">0</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>Currently on Campus</h3>
+                        <p id="currentlyOnCampus">0</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>Completed Visits</h3>
+                        <p id="completedVisits">0</p>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <h2>Recent Visitors</h2>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Visitor Name</th>
+                                    <th>Category</th>
+                                    <th>Person to Meet</th>
+                                    <th>Check-in Time</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="recentVisitors">
+                                <tr>
+                                    <td colspan="5">
+                                        No visitors registered yet.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Register Visitor Section -->
+            <section id="register" class="content-section hidden">
+                <header class="page-header">
+                    <div>
+                        <h1>Register Visitor</h1>
+                        <p>Enter the details of the campus visitor.</p>
+                    </div>
+                </header>
+
+                <div class="panel">
+                    <form id="visitorForm">
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="visitorName">Visitor Name *</label>
+                                <input
+                                    type="text"
+                                    id="visitorName"
+                                    name="visitorName"
+                                    placeholder="Enter full name"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    name="phone"
+                                    placeholder="Enter 10-digit phone number"
+                                    pattern="[0-9]{10}"
+                                    maxlength="10"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="category">Visitor Category *</label>
+                                <select id="category" name="category" required>
+                                    <option value="">Select category</option>
+                                    <option value="Parent">Parent</option>
+                                    <option value="Guest">Guest</option>
+                                    <option value="Official">Official</option>
+                                    <option value="Delivery">Delivery</option>
+                                    <option value="Alumni">Alumni</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="department">Department</label>
+                                <select id="department" name="department">
+                                    <option value="">Select department</option>
+                                    <option value="CSE">Computer Science</option>
+                                    <option value="ECE">Electronics</option>
+                                    <option value="EEE">Electrical</option>
+                                    <option value="Mechanical">Mechanical</option>
+                                    <option value="Civil">Civil</option>
+                                    <option value="Administration">Administration</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="host">Person to Meet *</label>
+                                <input
+                                    type="text"
+                                    id="host"
+                                    name="host"
+                                    placeholder="Enter faculty or staff name"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="purpose">Purpose of Visit *</label>
+                                <input
+                                    type="text"
+                                    id="purpose"
+                                    name="purpose"
+                                    placeholder="Enter purpose"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="notes">Additional Notes</label>
+                                <textarea
+                                    id="notes"
+                                    name="notes"
+                                    rows="3"
+                                    placeholder="Optional notes"
+                                ></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit">
+                                Register Visitor
+                            </button>
+
+                            <button type="reset" class="secondary-button">
+                                Clear Form
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Visitor Records Section -->
+            <section id="records" class="content-section hidden">
+                <header class="page-header">
+                    <div>
+                        <h1>Visitor Records</h1>
+                        <p>View and manage registered visitors.</p>
+                    </div>
+                </header>
+
+                <div class="panel">
+                    <div class="filter-container">
+                        <input
+                            type="search"
+                            id="searchInput"
+                            placeholder="Search by visitor name or phone..."
+                        >
+
+                        <select id="statusFilter">
+                            <option value="All">All Statuses</option>
+                            <option value="On Campus">On Campus</option>
+                            <option value="Checked Out">Checked Out</option>
+                        </select>
+
+                        <select id="categoryFilter">
+                            <option value="All">All Categories</option>
+                            <option value="Parent">Parent</option>
+                            <option value="Guest">Guest</option>
+                            <option value="Official">Official</option>
+                            <option value="Delivery">Delivery</option>
+                            <option value="Alumni">Alumni</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Visitor ID</th>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>Category</th>
+                                    <th>Person to Meet</th>
+                                    <th>Check-in</th>
+                                    <th>Check-out</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="visitorTableBody">
+                                <tr>
+                                    <td colspan="9">
+                                        No visitor records available.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
